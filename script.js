@@ -1,6 +1,8 @@
 const numbers = ['9', '8', '7', '6', '5', '4', '3', '2', '1', '%', ',', '0'];
 const operadores = ['/', '*', '-', '+']
-const actions = ['⇤', '↺']
+const enter = ['=']
+const actions = ['⇤']
+const reset = ['↺']
 const containerNumbers = document.querySelector('#numbers');
 const containerActions = document.querySelector('#actions')
 const containerOperadores = document.querySelector('#operadores')
@@ -14,8 +16,9 @@ function addButtons(array, elemento, classe) {
 }
 addButtons(numbers, containerNumbers, 'numbers')
 addButtons(operadores, containerOperadores, 'operadores')
-addButtons(actions, containerActions, 'actions')
-
+addButtons(enter, containerActions, 'enter')
+addButtons(actions, containerActions, 'backspace')
+addButtons(reset, containerActions, 'reset')
 const input = document.querySelector('#input');
 const buttons = document.querySelectorAll('.buttons');
 function addEvent() {
@@ -32,24 +35,9 @@ function addEvent() {
   }
 }
 addEvent()
-function equal() {
-  const inputValue = input.value;
-  let operacao = []
-  let numbers = []
-  let number = 0
-  for(let index = 0; index < inputValue.length; index +=1) {
-    if(!isNaN(inputValue[index]) === true) {
-      if (number === 0) {
-        number = inputValue[index]
-      } else {
-        number += inputValue[index]
-      }
-    } else if(isNaN(inputValue[index]) === true) {
-      numbers.push(number)
-      number = 0
-      operacao.push(inputValue[index])
-    }
-  }
-  console.log(numbers);
-  console.log(operacao);
+
+function result() {
+  const value = input.value
+  console.log(eval(value));
 }
+
