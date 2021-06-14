@@ -16,25 +16,39 @@ function addButtons(array, elemento, classe) {
 }
 addButtons(numbers, containerNumbers, 'numbers')
 addButtons(operadores, containerOperadores, 'operadores')
-addButtons(enter, containerActions, 'enter')
-addButtons(actions, containerActions, 'backspace')
-addButtons(reset, containerActions, 'reset')
+
 const input = document.querySelector('#input');
 const buttons = document.querySelectorAll('.buttons');
+let value = 0
 function addEvent() {
-  let value = []
   for (let index = 0; index < buttons.length; index += 1) {
     const button = buttons[index]
     const typeButton = buttons[index].classList.contains('actions')
     if (typeButton === false) {
       button.addEventListener('click', () => {
-        value += button.innerText
-        input.value = value
+        if (value === 0) {
+          value = button.innerText
+          input.value = value
+        } else {
+          value += button.innerText
+          input.value = value
+        }
       })
     }
   }
 }
 addEvent()
+addButtons(actions, containerActions, 'backspace')
+addButtons(reset, containerActions, 'reset')
+addButtons(enter, containerActions, 'enter')
+document.querySelector('.backspace').addEventListener('click', () => {
+  let value = input.value
+  let length = value.length
+  let newString = value.substr(0, length -1)
+  input.value = newString
+  value = newString
+})
+
 
 function result() {
   const value = input.value

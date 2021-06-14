@@ -67,7 +67,17 @@ body {
   height: 60px;
 }
 
-#enter {
+.enter {
   width: 100%;
   height: 50%;
+}
+
+.reset {
+  width: 100%;
+  height: 60px;
+}
+
+.backspace {
+  width: 100%;
+  height: 60px;
 }
