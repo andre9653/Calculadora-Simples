@@ -43,9 +43,30 @@ document.querySelector('.backspace').addEventListener('click', () => {
   value = newString
 })
 
+const divResult = document.querySelector('#result')
+const resetBtn = document.querySelector('.reset');
+resetBtn.addEventListener('click', () => {
+  input.value = ''
+  divResult.innerHTML = ''
+})
 
-function result() {
-  const value = input.value
-  console.log(eval(value));
-}
-
+const enterBtn = document.querySelector('.enter');
+enterBtn.addEventListener('click', () => {
+  const control = input.value.substr(0) >= 0 || input.value.substr(-1) >= 0;
+  console.log(control);
+  if (control === true) {
+    const result = eval(input.value);
+    const h3 = document.createElement('h3');
+    h3.classList = 'resultado';
+    h3.innerText = result;
+    divResult.innerHTML = ''
+    divResult.appendChild(h3);
+    input.value = ''
+  } else {
+    const h3 = document.createElement('h3');
+    h3.classList = 'warning';
+    h3.innerText = 'Operação invalida';
+    divResult.innerHTML = ''
+    divResult.appendChild(h3);
+  }
+})
