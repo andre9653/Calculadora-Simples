@@ -18,24 +18,18 @@ addButtons(numbers, containerNumbers, 'numbers')
 addButtons(operadores, containerOperadores, 'operadores')
 
 const input = document.querySelector('#input');
-const buttons = document.querySelectorAll('.buttons');
-let value = 0
+const buttons = document.querySelector('#buttons');
 function addEvent() {
-  for (let index = 0; index < buttons.length; index += 1) {
-    const button = buttons[index]
-    const typeButton = buttons[index].classList.contains('actions')
-    if (typeButton === false) {
-      button.addEventListener('click', () => {
-        if (value === 0) {
-          value = button.innerText
-          input.value = value
-        } else {
-          value += button.innerText
-          input.value = value
-        }
-      })
+  buttons.addEventListener('click', (event) => {
+    let eventOrigin = event.target
+    if (eventOrigin.classList.contains('numbers') === true || eventOrigin.classList.contains('operadores')) {
+      if (input.value === '') {
+        input.value = eventOrigin.innerText
+      } else {
+        input.value += eventOrigin.innerText
+      }
     }
-  }
+  })
 }
 addEvent()
 addButtons(actions, containerActions, 'backspace')
