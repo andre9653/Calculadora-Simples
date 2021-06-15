@@ -1,4 +1,4 @@
-const numbers = ['9', '8', '7', '6', '5', '4', '3', '2', '1', '%', ',', '0'];
+const numbers = ['9', '8', '7', '6', '5', '4', '3', '2', '1', '00', ',', '0'];
 const operadores = ['/', '*', '-', '+']
 const enter = ['=']
 const actions = ['⇤']
@@ -52,16 +52,22 @@ resetBtn.addEventListener('click', () => {
 
 const enterBtn = document.querySelector('.enter');
 enterBtn.addEventListener('click', () => {
-  const control = input.value.substr(0) >= 0 || input.value.substr(-1) >= 0;
+  const control = isNaN(input.value.substr(0, 1)) === false && isNaN(input.value.substr(-1)) === false && input.value !== '';
   console.log(control);
   if (control === true) {
     const result = eval(input.value);
     const h3 = document.createElement('h3');
     h3.classList = 'resultado';
-    h3.innerText = result;
+    h3.innerText = `${input.value} = ${result}`;
     divResult.innerHTML = ''
     divResult.appendChild(h3);
-    input.value = ''
+    input.value = result
+  } else if(input.value === '') {
+    const h3 = document.createElement('h3');
+    h3.classList = 'warning';
+    h3.innerText = 'Digite alguma operação';
+    divResult.innerHTML = ''
+    divResult.appendChild(h3);
   } else {
     const h3 = document.createElement('h3');
     h3.classList = 'warning';
