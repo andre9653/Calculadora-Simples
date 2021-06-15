@@ -47,7 +47,7 @@ const divResult = document.querySelector('#result')
 const resetBtn = document.querySelector('.reset');
 resetBtn.addEventListener('click', () => {
   input.value = ''
-  divResult.innerHTML = ''
+  divResult.innerText = ''
 })
 
 const enterBtn = document.querySelector('.enter');
@@ -64,7 +64,7 @@ enterBtn.addEventListener('click', () => {
     input.value = result
   } else if(input.value === '') {
     const h3 = document.createElement('h3');
-    h3.classList = 'warning';
+    h3.classList = 'alert';
     h3.innerText = 'Digite alguma operação';
     divResult.innerHTML = ''
     divResult.appendChild(h3);
